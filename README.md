@@ -1,63 +1,161 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19808953&assignment_repo_type=AssignmentRepo)
-# Express.js RESTful API Assignment
+```markdown
+# 📦 Product API – Express.js RESTful Assignment
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+This project is a simple RESTful API built using **Express.js** for managing products. It demonstrates routing, middleware, authentication, error handling, filtering, pagination, and search.
 
-## Assignment Overview
+---
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+## 🚀 Getting Started
 
-## Getting Started
+### 🔧 Prerequisites
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
+- Node.js (v18+)
+- npm
+
+### 📥 Installation
+
+1. Clone your repository:
+   ```bash
+   git clone <your-assignment-repo-url>
+   cd week-2-express-js-assignment-francis-auka
    ```
+
+2. Install dependencies:
+   ```bash
    npm install
    ```
-4. Run the server:
-   ```
+
+3. Start the server:
+   ```bash
    npm start
    ```
 
-## Files Included
+4. Open in browser:
+   ```
+   http://localhost:8080/
+   ```
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+---
 
-## Requirements
+## 🔐 Authentication
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+Some endpoints require a simple `Authorization` header:
 
-## API Endpoints
+```
+Authorization: Bearer secret
+```
 
-The API will have the following endpoints:
+---
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+## 📚 API Endpoints
 
-## Submission
+### ➤ `GET /api/products`
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+Retrieve all products. Supports search, pagination, and filtering.
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+#### Optional query parameters:
 
-## Resources
+| Param    | Type   | Description                      |
+|----------|--------|----------------------------------|
+| `search` | string | Search by product name           |
+| `page`   | number | Page number (default: 1)         |
+| `limit`  | number | Items per page (default: 10)     |
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+#### Example:
+```
+GET /api/products?search=phone&page=1&limit=2
+```
+
+---
+
+### ➤ `GET /api/products/:id`
+
+Get a specific product by its ID.
+
+#### Example:
+```
+GET /api/products/1
+```
+
+---
+
+### ➤ `POST /api/products` 🔒
+
+Create a new product.
+
+#### Headers:
+```
+Authorization: Bearer secret
+Content-Type: application/json
+```
+
+#### Body:
+```json
+{
+  "name": "Keyboard",
+  "description": "Mechanical keyboard",
+  "price": 150,
+  "category": "electronics",
+  "inStock": true
+}
+```
+
+---
+
+### ➤ `PUT /api/products/:id` 🔒
+
+Update an existing product.
+
+#### Headers:
+```
+Authorization: Bearer secret
+Content-Type: application/json
+```
+
+#### Body (example):
+```json
+{
+  "price": 120
+}
+```
+
+---
+
+### ➤ `DELETE /api/products/:id` 🔒
+
+Delete a product by its ID.
+
+#### Headers:
+```
+Authorization: Bearer secret
+```
+
+---
+
+## 🛠 Middleware Features
+
+- ✅ Request logging
+- ✅ Basic authentication (`Bearer secret`)
+- ✅ Centralized error handling
+
+---
+
+## 📂 In-Memory Data
+
+This API uses a temporary array of product objects stored in-memory (no database). Restarting the server will reset the data.
+
+---
+
+## ✍️ Author
+
+**Francis Auka**  
+Assignment for **Week 2 – Express.js RESTful API**  
+PLPACADEMY
+
+---
+
+## ✅ Status
+
+✔️ All features implemented and tested  
+✔️ Ready for submission via GitHub Classroom
+```
